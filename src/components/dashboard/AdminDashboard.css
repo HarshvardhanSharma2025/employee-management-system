@@ -1,0 +1,14 @@
+.form-head {
+    width: 1300px;
+    height:600px;
+    margin-top: -130px;
+}
+.logout-button1{
+    background-color: red;
+    font-size:20px;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 1250px;
+    margin-top: -70px;
+}
