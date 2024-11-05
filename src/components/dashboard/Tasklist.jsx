@@ -1,48 +1,28 @@
 import React from 'react';
+import TaskListComponent from './TaskListComponent';
+import NewTask from './NewTask';
+import CompletedTask from './CompletedTask';
+import FailedTask from './FailedTask';
 
-const Tasklist = () => {
+const Tasklist = ({data}) => {
     return (
         <div className="task-list">
-            <div className='tast-list-item bg-yellow-600'>
-                <div className="flex justify-between  w-full p-4">
-                    <h3 className="bg-red-400 text-xl text-white py-1 px-1 rounded self-start">High</h3>
-                    <h4 className="text-base text-white py-1 px-1 rounded self-start">26-Feb-2024</h4>
-                </div>
-                <div className="w-full -mt-12 px-4">
-                    <h2 className='mt-5 text-2xl font-bold'>This is a new Task.</h2>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. At mollitia, harum voluptatibus delectus magnam illo nobis ipsam aliquid cumque accusantium optio, consectetur saepe facere eius cum nemo. Itaque, ullam non!</p>
-                </div>
-            </div>
-            <div className='tast-list-item bg-red-600'>
-                <div className="flex justify-between  w-full p-4">
-                    <h3 className="bg-red-400 text-xl text-white py-1 px-1 rounded self-start">High</h3>
-                    <h4 className="text-base text-white py-1 px-1 rounded self-start">26-Feb-2024</h4>
-                </div>
-                <div className="w-full -mt-12 px-4">
-                    <h2 className='mt-5 text-2xl font-bold'>This is a new Task.</h2>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. At mollitia, harum voluptatibus delectus magnam illo nobis ipsam aliquid cumque accusantium optio, consectetur saepe facere eius cum nemo. Itaque, ullam non!</p>
-                </div>
-            </div>
-            <div className='tast-list-item bg-green-600'>
-                <div className="flex justify-between  w-full p-4">
-                    <h3 className="bg-red-400 text-xl text-white py-1 px-1 rounded self-start">High</h3>
-                    <h4 className="text-base text-white py-1 px-1 rounded self-start">26-Feb-2024</h4>
-                </div>
-                <div className="w-full -mt-12 px-4">
-                    <h2 className='mt-5 text-2xl font-bold'>This is a new Task.</h2>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. At mollitia, harum voluptatibus delectus magnam illo nobis ipsam aliquid cumque accusantium optio, consectetur saepe facere eius cum nemo. Itaque, ullam non!</p>
-                </div>
-            </div>
-            <div className='tast-list-item bg-blue-600'>
-                <div className="flex justify-between  w-full p-4">
-                    <h3 className="bg-red-400 text-xl text-white py-1 px-1 rounded self-start">High</h3>
-                    <h4 className="text-base text-white py-1 px-1 rounded self-start">26-Feb-2024</h4>
-                </div>
-                <div className="w-full -mt-12 px-4">
-                    <h2 className='mt-5 text-2xl font-bold'>This is a new Task.</h2>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. At mollitia, harum voluptatibus delectus magnam illo nobis ipsam aliquid cumque accusantium optio, consectetur saepe facere eius cum nemo. Itaque, ullam non!</p>
-                </div>
-            </div>
+            {data.tasks.map((item,idx)=>{
+                if(item.active){
+                    return <TaskListComponent key={idx}/>
+                }
+                if(item.newTask){
+                    return <NewTask key={idx}/>
+                }
+                if(item.completed){
+                    return <CompletedTask key={idx}/>
+                }
+                if(item.failure){
+                    return <FailedTask key={idx}/>
+                }
+
+            })}
+            
         </div>
     )
 }

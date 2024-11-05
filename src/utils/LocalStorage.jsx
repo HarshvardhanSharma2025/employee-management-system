@@ -1,8 +1,17 @@
+localStorage.clear();
+
 const employees = [
     {
         "id": 1,
+        "firstName": "Rohit",
         "email": "employee1@example.com",
         "password": "123",
+        "taskNumber": {
+            "active": 2,
+            "newTask": 1,
+            "completed": 1,
+            "failure": 0
+        },
         "tasks": [
             {
                 "taskTitle": "Design Homepage",
@@ -38,8 +47,15 @@ const employees = [
     },
     {
         "id": 2,
+        "firstName": "Priya",
         "email": "employee2@example.com",
         "password": "123",
+        "taskNumber": {
+            "active": 2,
+            "newTask": 1,
+            "completed": 0,
+            "failure": 0
+        },
         "tasks": [
             {
                 "taskTitle": "Customer Feedback Analysis",
@@ -65,8 +81,15 @@ const employees = [
     },
     {
         "id": 3,
+        "firstName": "Ananya",
         "email": "employee3@example.com",
         "password": "123",
+        "taskNumber": {
+            "active": 2,
+            "newTask": 1,
+            "completed": 1,
+            "failure": 0
+        },
         "tasks": [
             {
                 "taskTitle": "Optimize Database",
@@ -102,8 +125,15 @@ const employees = [
     },
     {
         "id": 4,
+        "firstName": "Vikram",
         "email": "employee4@example.com",
         "password": "123",
+        "taskNumber": {
+            "active": 1,
+            "newTask": 0,
+            "completed": 1,
+            "failure": 0
+        },
         "tasks": [
             {
                 "taskTitle": "Security Audit",
@@ -129,8 +159,15 @@ const employees = [
     },
     {
         "id": 5,
+        "firstName": "Meera",
         "email": "employee5@example.com",
         "password": "123",
+        "taskNumber": {
+            "active": 2,
+            "newTask": 1,
+            "completed": 1,
+            "failure": 0
+        },
         "tasks": [
             {
                 "taskTitle": "Design Social Media Ads",
@@ -166,6 +203,7 @@ const employees = [
     }
 ];
 
+
 const admin = [
     {
         "id": 1,
@@ -176,15 +214,15 @@ const admin = [
 
 export const setLocalStorage = () => {
     if (!localStorage.getItem('employees')) {
-      localStorage.setItem('employees', JSON.stringify(employees));
+        localStorage.setItem('employees', JSON.stringify(employees));
     }
     if (!localStorage.getItem('admin')) {
-      localStorage.setItem('admin', JSON.stringify(admin));
+        localStorage.setItem('admin', JSON.stringify(admin));
     }
-  };
+};
 
-export const getLocalStorage = () =>{
+export const getLocalStorage = () => {
     const employees = JSON.parse(localStorage.getItem('employees'));
     const admin = JSON.parse(localStorage.getItem('admin'));
-    return {employees,admin}
-}
+    return { employees, admin };
+};
