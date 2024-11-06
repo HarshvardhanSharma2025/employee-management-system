@@ -12,3 +12,8 @@
     margin-left: 1250px;
     margin-top: -70px;
 }
+
+.h-[80%]::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar width */
+    background: transparent; /* Optional: Make the background transparent */
+  }
