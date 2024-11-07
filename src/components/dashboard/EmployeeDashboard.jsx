@@ -4,12 +4,12 @@ import Tasklistnumber from './Tasklistnumber'
 import Tasklist from './Tasklist';
 import AllTask from './AllTask';
 
-const EmployeeDashboard = ({data}) => {
+const EmployeeDashboard = (props) => {
   return (
     <div>
-    <Headeremployeedashboard data={data} />
-    <Tasklistnumber data={data}/>
-    <Tasklist data={data}/>
+    <Headeremployeedashboard changeUser={props.changeUser} data={props.data} />
+    <Tasklistnumber data={props.data}/>
+    <Tasklist data={props.data}/>
     </div>
   )
 }

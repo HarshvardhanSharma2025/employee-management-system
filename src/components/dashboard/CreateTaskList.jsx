@@ -1,10 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './AdminDashboard.css';
 
 const CreateTaskList = () => {
+
+    
+
+    const [taskTitle, settaskTitle] = useState('');
+    const [AssignedTo, setAssignedTo] = useState('');
+    const [category, setcategory] = useState('');
+    const [taskDate, settaskDate] = useState('');
+    const [description, setdescription] = useState('');
+
+    const [task, settask] = useState({});
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+
+        // Update task state
+        settask({
+            taskTitle,
+            taskDate,
+            description,
+            category,
+            active: false,
+            newTask: true,
+            completed: false,
+            failure: false,
+        });
+
+        // Clear input fields
+        setAssignedTo('');
+        setcategory('');
+        setdescription('');
+        settaskDate('');
+        settaskTitle('');
+
+        const data = JSON.parse(localStorage.getItem('employees')) || [];
+
+        data.forEach(function (elem) {
+            if (AssignedTo === elem.firstName) {
+                elem.tasks.push(task);
+                console.log(elem);
+            }
+        })
+
+        localStorage.setItem('employees', JSON.stringify(data));
+    };
+
+
+
     return (
+
+
         <div className="form-head flex items-center min-h-screen p-2 justify-center">
-            <form className="bg-[#1c1c1c]  rounded-lg mt-5 shadow-lg mr-17 w-11/12 max-w-8xl flex flex-col justify-between h-[350px]">
+            <form onSubmit={(e) => {
+                submitHandler(e);
+            }} className="bg-[#1c1c1c]  rounded-lg mt-5 shadow-lg mr-17 w-11/12 max-w-8xl flex flex-col justify-between h-[350px]">
 
                 {/* Left Side: Inputs */}
                 <div className="flex flex-row  justify-between">
@@ -12,6 +63,11 @@ const CreateTaskList = () => {
                         <div className="mb-1.5 mt-2">
                             <label className="block text-white mb-1" htmlFor="taskTitle">Task Title</label>
                             <input
+
+                                value={taskTitle}
+                                onChange={(e) => {
+                                    settaskTitle(e.target.value);
+                                }}
                                 type="text"
                                 id="taskTitle"
                                 className="w-full p-1 bg-gray-700 text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
@@ -23,6 +79,10 @@ const CreateTaskList = () => {
                         <div className="mb-1.5">
                             <label className="block text-white mb-1" htmlFor="assignedTo">Assigned To</label>
                             <input
+                                value={AssignedTo}
+                                onChange={(e) => {
+                                    setAssignedTo(e.target.value);
+                                }}
                                 type="text"
                                 id="assignedTo"
                                 className="w-full p-1 bg-gray-700 text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
@@ -34,6 +94,10 @@ const CreateTaskList = () => {
                         <div className="mb-1.5">
                             <label className="block text-white mb-1" htmlFor="category">Category</label>
                             <select
+                                value={category}
+                                onChange={(e) => {
+                                    setcategory(e.target.value);
+                                }}
                                 id="category"
                                 className="w-full p-1 bg-gray-700 text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
                                 required
@@ -49,6 +113,10 @@ const CreateTaskList = () => {
                         <div className="mb-1.5">
                             <label className="block text-white mb-1" htmlFor="dueDate">Due Date</label>
                             <input
+                                value={taskDate}
+                                onChange={(e) => {
+                                    settaskDate(e.target.value);
+                                }}
                                 type="date"
                                 id="dueDate"
                                 className="w-full p-1 bg-gray-700 text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
@@ -62,6 +130,10 @@ const CreateTaskList = () => {
                         <div className=" flex-grow mt-2">
                             <label className="block text-white mb-1" htmlFor="description">Description</label>
                             <textarea
+                                value={description}
+                                onChange={(e) => {
+                                    setdescription(e.target.value);
+                                }}
                                 id="description"
                                 className="w-full p-1 bg-gray-700 text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
                                 placeholder="Enter task description"

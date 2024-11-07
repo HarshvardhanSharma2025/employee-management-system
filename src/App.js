@@ -48,8 +48,8 @@ const App = () => {
   return (
     <>
       {!user && <LoginForm handleLogin={handleLogin} />}
-      {user === 'admin' && <AdminDashboard />}
-      {user === 'employee' && <EmployeeDashboard data={loggedInuserData} onLogout={handleLogout} />}
+      {user === 'admin' && <AdminDashboard changeUser={setUser}/>}
+      {user === 'employee' && <EmployeeDashboard changeUser={setUser} data={loggedInuserData} onLogout={handleLogout} />}
     </>
   );
 };

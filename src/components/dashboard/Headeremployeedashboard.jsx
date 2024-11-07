@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './Headeremployeedashboard.css';
 import { setLocalStorage } from '../../utils/LocalStorage';
 
-const Headeremployeedashboard = ({data}) => {
+const Headeremployeedashboard = (props) => {
 
   /*const [username, setusername] = useState('');
   if(!data){
@@ -14,7 +14,7 @@ const Headeremployeedashboard = ({data}) => {
     const logoutUser = () => {
       // Clear the user session in localStorage and reload
       localStorage.removeItem('loggedInUser');
-      window.location.reload();
+      props.changeUser('');
     };
 
   return (
